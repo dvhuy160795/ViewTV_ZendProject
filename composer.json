@@ -1,0 +1,17 @@
+{
+    "name": "huy/view-tv_zen-project",
+    "description": "Viewtv",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "dvhuy160795",
+            "email": "dvhuy160795@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "robmorgan/phinx": "dev-master",
+        "zendframework/zendframework1": "^1.12@dev"
+    }
+}
