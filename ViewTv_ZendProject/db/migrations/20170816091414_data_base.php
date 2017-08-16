@@ -27,6 +27,9 @@ class DataBase extends AbstractMigration
      */
     public function change()
     {
-        
+        $tableAdmin=$this-> table('admin');
+        $tableAdmin
+                ->addColumn('admin_name','string',array('limit'=>20))
+                ->addColumn('admin_pass','string',array('limit'=>20));
     }
 }
