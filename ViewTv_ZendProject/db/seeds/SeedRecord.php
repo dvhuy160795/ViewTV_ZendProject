@@ -75,6 +75,7 @@ class SeedRecord extends AbstractSeed
             ]
         ];
 
+        
         $this->table('admin')->insert($dataAdmin)->save();
     }
 }
