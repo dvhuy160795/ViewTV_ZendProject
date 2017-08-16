@@ -30,6 +30,13 @@ class DataBase extends AbstractMigration
         $tableAdmin=$this-> table('admin');
         $tableAdmin
                 ->addColumn('admin_name','string',array('limit'=>20))
-                ->addColumn('admin_pass','string',array('limit'=>20));
+                ->addColumn('admin_pass','string',array('limit'=>20))
+                ->addColumn('created','date')
+                ->save();
+        $tableGroupUser=$this ->table('group_user');
+        $tableGroupUser
+                ->addColumn('admin_name','string',array('limit'=>20))
+                ->addColumn('admin_name','string',array('limit'=>20))
+                ->addColumn('admin_name','string',array('limit'=>20));
     }
 }
