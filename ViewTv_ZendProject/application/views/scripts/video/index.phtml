@@ -1,0 +1,76 @@
+<?php
+$videoList = $this->videoList; /* @var $videoList Zend_Paginator */
+?>
+<div id="view-content">
+	<p>View script for controller <b>Video</b> and script/action name <b>index</b></p>
+	<table border='1'>
+		<thead>
+		<tr>
+			<th>ID</th>
+			<th>Name</th>
+			<th>Url</th>
+			<th>long</th>
+			<th>Data</th>
+			<th>Image</th>
+			<th>Desc</th>
+			<th>View</th>
+			<th>Status</th>
+			<th>DatePosted</th>
+			<th>User ID</th>
+			<th>Tpe Video</th>
+			<th>List video</th>
+			<th colspan="2">Action</th>
+		</tr>
+		</thead>
+		<tbody>
+	<?php foreach($videoList as $video): 
+		$videoId = $this->escape($video['id']);
+		$videoName = $this->escape($video['video_name']);
+		$videoUrl = $this->escape($video['video_url']);
+		$videoLong = $this->escape($video['video_long']);
+		$videoData = $this->escape($video['video_data']);
+		$videoImage = $this->escape($video['video_image']);
+		$videoDes = $this->escape($video['video_description']);
+		$videoView = $this->escape($video['video_view']);
+		$videoStatus = $this->escape($video['video_status']);
+		$videoDatepost = $this->escape($video['video_dateposted']);
+		$videoUserId = $this->escape($video['video_user_id']);
+		$videoTypeVideo = $this->escape($video['video_type_video']);
+		$videoListId = $this->escape($video['video_list_id']);
+		$urlEditVideo = $this->url([
+			'controller' => 'video',
+			'action' => 'update',
+			'id' => $videoId
+		]);
+		$urlDeleteVideo = $this->url([
+			'controller' => 'video',
+			'action' => 'delete',
+			'id' => $videoId
+		]);
+		$badData = "<script>alert('hehe');</script>";
+	?>
+	<tr>
+		<td><?php echo $videoId ;?></td>
+		<td><?php echo $videoName ;?></td>
+		<td><?php echo $videoUrl ;?></td>
+		<td><?php echo $videoLong ;?></td>
+		<td><?php echo $videoData ;?></td>
+		<td><?php echo $videoImage ;?></td>
+		<td><?php echo $videoDes ;?></td>
+		<td><?php echo $videoView ;?></td>
+		<td><?php echo $videoStatus ;?></td>
+		<td><?php echo $videoDatepost ;?></td>
+		<td><?php echo $videoUserId ;?></td>
+		<td><?php echo $videoTypeVideo ;?></td>
+		<td><?php echo $videoListId;?></td>
+		<td><a href='<?php echo $urlEditVideo;?>'>Edit</a></td>
+		<td><a href='<?php echo $urlDeleteVideo;?>'>Delete</a></td>
+		<td><?php echo $this->escape($badData);?></td>
+	</tr>
+	<?php endforeach; //foreach($this->videoList as $video)?>
+	</tbody>
+	</table>
+</div>
+<?php 
+       echo $this->paginationControl($videoList, 'Jumping' , 'video/pagi.phtml'); 
+?>
