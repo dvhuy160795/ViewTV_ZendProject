@@ -12,8 +12,8 @@ class Application_Form_Video extends Zend_Form
                     ->addFilter('StringTrim')
                     ->addValidator('NotEmpty')
                     ->addValidator('StringLength', false, array(6, 20))
-                    
-                    ->addErrorMessages(['isEmpty'=>'ádfsad','1'=>"123231412"]);
+                    ->addValidator('Int',false)
+                    ;
 
         $formUrl = new Zend_Form_Element_Text('video_url');
         $formUrl->setLabel('Url')  
@@ -25,13 +25,15 @@ class Application_Form_Video extends Zend_Form
         $formLong->setLabel('Long')  
                     ->setRequired(true)
                     //->setValue($valLong)
-                    ->addFilter('StringToUpper');
+                    ->addFilter('StringToUpper')
+                    ->addValidator('Int',false)
                     ;
         $formData = new Zend_Form_Element_Text('video_data');
         $formData->setLabel('Data')  
                     ->setRequired(true)
                     //->setValue($valData)
-                    ->addFilter('StringToUpper');
+                    ->addFilter('StringToUpper')
+                    ->addValidator('Int',false)
                     ;
         $formImage = new Zend_Form_Element_Text('video_image');
         $formImage->setLabel('Image')  
@@ -49,13 +51,16 @@ class Application_Form_Video extends Zend_Form
         $formView->setLabel('View')  
                     ->setRequired(true)
                     //->setValue($valView)
-                    ->addFilter('StringToUpper');
+                    ->addFilter('StringToUpper')
+                    ->addValidator('Int',false)
                     ;
         $formStatus = new Zend_Form_Element_Text('video_status');
         $formStatus->setLabel('Status')  
                     ->setRequired(true)
                     //->setValue($valStatus)
-                    ->addFilter('StringToUpper');
+                    ->addFilter('StringToUpper')
+                    ->addValidator('Int',false)
+                    ->addValidator('Between',false,['min'=>0,'max'=>1])
                     ;
         $formDate = new Zend_Form_Element_Text('video_dateposted');
         $formDate->setLabel('Date')  
@@ -68,29 +73,30 @@ class Application_Form_Video extends Zend_Form
                     ->setRequired(true)
                     //->setValue($valUserId)
                     ->addFilter('StringTrim')
-                    ->addFilter('StringToUpper');
+                    ->addFilter('StringToUpper')
+                    ->addValidator('Int',false)
                     ;
         $formTypeVideo = new Zend_Form_Element_Text('video_type_video');
         $formTypeVideo->setLabel('TypeVideo')  
                     ->setRequired(true)
                     //->setValue($valTypeVideo)
-                    ->addFilter('StringToUpper');
+                    ->addFilter('StringToUpper')
+                    ->addValidator('Int',false)
                     ;
         $formListID = new Zend_Form_Element_Text('video_list_id');
         $formListID->setLabel('ListId')  
                     ->setRequired(true)
                     //->setValue($valListId)
                     ->addFilter('StringTrim')
-                    ->addFilter('StringToUpper');
+                    ->addFilter('StringToUpper')
+                    ->addValidator('Int',false)
                     ;
+        $formInputFile = new Zend_Form_Element_File('file_url');
+        $formInputFile->setLabel('Video');
         $formSubmit = new Zend_Form_Element_Submit('submit');
         $formSubmit->setAttrib('id', 'submitbutton');
         $this->addElements(array($formName,$formUrl,$formLong,$formData,$formImage,
-                                 $formDes,$formView,$formStatus,$formDate,$formUserId,$formTypeVideo,$formListID,$formSubmit));
-    }
-    public function formVideo(){
-        
-        
+                                 $formDes,$formView,$formStatus,$formDate,$formUserId,$formTypeVideo,$formListID,$formInputFile,$formSubmit));
     }
         
         

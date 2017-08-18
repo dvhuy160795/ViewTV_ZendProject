@@ -18,6 +18,7 @@
           <actionMethod actionName="update"/>
           <actionMethod actionName="delete"/>
           <actionMethod actionName="edit1"/>
+          <actionMethod actionName="add"/>
         </controllerFile>
       </controllersDirectory>
       <formsDirectory>
@@ -57,6 +58,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Video">
             <viewScriptFile forActionName="edit1"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Video">
+            <viewScriptFile forActionName="add"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

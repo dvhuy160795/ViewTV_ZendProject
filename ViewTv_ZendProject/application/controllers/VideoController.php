@@ -24,7 +24,7 @@ class VideoController extends Zend_Controller_Action
     }
 
     public function updateAction()
-    {   
+    {
         $idVideo = $this->getParam('id');
         
         $formUpdate = new Application_Form_Video();
@@ -103,30 +103,51 @@ class VideoController extends Zend_Controller_Action
                 $tableVideo->update($arrFormVideo,'id='.$idVideo);
 
                 $this->_helper->redirector('index');
-            } 
-
-            $arr = $formUpdate->getMessages();
-            //var_dump($arr);
+                } 
             }
-
-        
 
     }
 
     public function deleteAction()
     {
-        // action body
+        $idVideo = $this->getParam('id');
         
+        $tableVideo = new Application_Model_DbTable_Video();
         
+        $tableVideo->delete('id='.$idVideo);
+        
+        $this->_helper->redirector('index');
     }
 
-    public function edit1Action()
+    public function addAction()
     {
-       
+        $formVideo = new Application_Form_Video();
+        $tableVideo = new Application_Model_DbTable_Video();
+
+        $formVideo->submit->setLabel('Add New Record');
+
+        $this->view->form = $formVideo;
+
+        $postFormCreate = $this->getRequest()->isPost();
+        if($postFormCreate){
+            $postFormCreateData = $this->getRequest()->getPost();
+            $postFormCreateIsValidData = $formVideo->isValid($postFormCreateData);
+            if($postFormCreateIsValidData){
+
+                unset($postFormCreateData['submit']);
+                $tableVideo->insert($postFormCreateData);
+
+            } else{
+                echo "<scrip>alert('nhập thiếu')</script>";
+            }
+            
+        }
     }
 
 
 }
+
+
 
 
 
