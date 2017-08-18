@@ -24,34 +24,12 @@ class VideoController extends Zend_Controller_Action
     }
 
     public function updateAction()
-    {
-        $formLogin = new Application_Form_Video();
-        $formLogin->submit->setLabel('Add');
-        $this->view->form = $formLogin;
-        $postFormLogin=$this->getRequest()->isPost();
-
-        if ($postFormLogin) {
-
-            $formLoginData = $this->getRequest()->getPost();
-            
-            if ($formLogin->isValid($formLoginData)) {
-            echo $loginName = $formLogin->getValue('video_name');
-            echo $loginPass = $formLogin->getValue('video_url');
-            
-            
-            } 
-
-            $arr = $formLogin->getMessages();
-            //var_dump($arr);
-            }
-
+    {   
+        $idVideo = $this->getParam('id');
         
+        $formUpdate = new Application_Form_Video();
+        $tableVideo = new Application_Model_DbTable_Video();
 
-    }
-
-    public function deleteAction()
-    {
-        // action body
         $objectVideo = $tableVideo->fetchAll("id=".$idVideo);
         $arrVideo=$objectVideo->toArray();
         foreach($arrVideo as $video):
@@ -68,33 +46,83 @@ class VideoController extends Zend_Controller_Action
             $valTypeVideo   = $video['video_type_video'];
             $valListId      = $video['video_list_id'];
         endforeach;
+
+        $formUpdate->video_name->setValue($valName);
+        $formUpdate->video_url->setValue($valUrl);
+        $formUpdate->video_long->setValue($valLong);
+        $formUpdate->video_data->setValue($valData);
+        $formUpdate->video_image->setValue($valImage);
+        $formUpdate->video_description->setValue($valDes);
+        $formUpdate->video_view->setValue($valView);
+        $formUpdate->video_status->setValue($valStatus);
+        $formUpdate->video_dateposted->setValue($valDate);
+        $formUpdate->video_user_id->setValue($valUserId);
+        $formUpdate->video_type_video->setValue($valTypeVideo);
+        $formUpdate->video_list_id->setValue($valListId);
+        $formUpdate->submit->setLabel('Update');
+
+        $this->view->form = $formUpdate;
+        $postFormUpdate=$this->getRequest()->isPost();
+
+        if ($postFormUpdate) {
+
+            $formUpdateData = $this->getRequest()->getPost();
+            $formUpdateIsValidData=$formUpdate->isValid($formUpdateData);
+            if ($formUpdateIsValidData) {
+                //set String To Upper
+                $filterStringToUpper = new Zend_Filter_StringToUpper();
+                $name = $filterStringToUpper->filter($formUpdateData['video_name']);
+                $url = $filterStringToUpper->filter($formUpdateData['video_url']);
+                $long = $filterStringToUpper->filter($formUpdateData['video_long']);
+                $data = $filterStringToUpper->filter($formUpdateData['video_data']);
+                $image = $filterStringToUpper->filter($formUpdateData['video_image']);
+                $des = $filterStringToUpper->filter($formUpdateData['video_description']);
+                $view = $filterStringToUpper->filter($formUpdateData['video_view']);
+                $status = $filterStringToUpper->filter($formUpdateData['video_status']);
+                $date = $filterStringToUpper->filter($formUpdateData['video_dateposted']);
+                $userId = $filterStringToUpper->filter($formUpdateData['video_user_id']);
+                $typeVideo = $filterStringToUpper->filter($formUpdateData['video_type_video']);
+                $listId = $filterStringToUpper->filter($formUpdateData['video_list_id']);
+
+                $arrFormVideo=[
+                    'video_name' => $name,
+                    'video_url' => $url,
+                    'video_long' => $long,
+                    'video_data' => $data,
+                    'video_image' => $image,
+                    'video_description' => $des,
+                    'video_view' => $view,
+                    'video_status' => $status,
+                    'video_dateposted' => $date,
+                    'video_user_id' => $userId,
+                    'video_type_video' => $typeVideo,
+                    'video_list_id' => $listId,
+                ];
+                // end String To Upper
+
+                $tableVideo->update($arrFormVideo,'id='.$idVideo);
+
+                $this->_helper->redirector('index');
+            } 
+
+            $arr = $formUpdate->getMessages();
+            //var_dump($arr);
+            }
+
+        
+
+    }
+
+    public function deleteAction()
+    {
+        // action body
+        
         
     }
 
     public function edit1Action()
     {
-       //$userPostVideoUpdated = $this->request->isPost();
-        //display video form for user edit video info
-        $idVideo = $this->getParam('id');
-        $tableVideo = new Application_Model_DbTable_Video();
-
-        // if ($userPostVideoUpdated) {
-        //     //TODO update video
-        //     $videoRaw = $this->request->getPost();
-        //     if (!$videoForm->isValid($videoForm)) {
-        //         return;
-        //     }
-        //     // valid case
-        //     $videoFiltered = $videoForm->getValues();
-        //     // update video by id then redirecto to list page
-        //     return;
-        // }
-
-
-        $objectVideo = $tableVideo->fetchAll("id=".$idVideo);
-        $arrVideo=$objectVideo->toArray();
-
-        $this->view->videoRecord = $arrVideo;
+       
     }
 
 
