@@ -1,81 +1,12 @@
-<?php
-	$video = $this->video; /* @var $video Zend_Paginator */
-?>
-<div id="view-content">
-<?php foreach($video as $video):
-		$videoId 		= 		$this->escape($video['id']);
-		$videoName 		= 		$this->escape($video['video_name']);
-		$videoUrl 		= 		$this->escape($video['video_url']);
-		$videoLong 		= 		$this->escape($video['video_long']);
-		$videoData 		= 		$this->escape($video['video_data']);
-		$videoImage 	= 		$this->escape($video['video_image']);
-		$videoDes 		= 		$this->escape($video['video_description']);
-		$videoView 		= 		$this->escape($video['video_view']);
-		$videoStatus 	= 		$this->escape($video['video_status']);
-		$videoDatepost 	= 		$this->escape($video['video_dateposted']);
-		$videoUserId 	= 		$this->escape($video['video_user_id']);
-		$videoTypeVideo = 		$this->escape($video['video_type_video']);
-		$videoListId 	= 		$this->escape($video['video_list_id']);
 
-		$txtName 	= 	$this->formText('nameVideo',$videoName)."</br>";
-		$txtUrl 	= 	$this->formText('urlVideo',$videoUrl)."</br>";
-		$txtLong 	= 	$this->formText('longVideo',$videoLong)."</br>";
-		$txtData 	= 	$this->formText('dataVideo',$videoData)."</br>";
-		$txtImg 	= 	$this->formText('imgVideo',$videoImage)."</br>";
-		$txtDes 	= 	$this->formText('desVideo',$videoDes)."</br>";
-		$txtView 	= 	$this->formText('viewVideo',$videoView)."</br>";
-		$txtSs 		= 	$this->formText('ssVideo',$videoStatus)."</br>";
-		$txtDate 	= 	$this->formText('dateVideo',$videoDatepost)."</br>";
-		$txtIdUser 	= 	$this->formText('idUserVideo',$videoUserId)."</br>";
- 		$txtList 	= 	$this->formText('listVideo',$videoListId)."</br>";		
+<div id="view-content">
+	<?php
+$this->title = "Add new album";
+$this->headTitle($this->title);
+echo $this->notis;
+
+echo $this->form ;
+
+
 ?>
-	<form action="" method="post">
-		<table>
-			<tr>
-				<th>Name</th>
-				<td><?php echo $txtName ?></td>
-			</tr>
-			<tr>
-				<th>Url</th>
-				<td><?php echo $txtUrl ?></td>
-			</tr>
-			<tr>
-				<th>Long</th>
-				<td><?php echo $txtLong ?></td>
-			</tr>
-			<tr>
-				<th>Data</th>
-				<td><?php echo $txtData ?></td>
-			</tr>
-			<tr>
-				<th>Img</th>
-				<td><?php echo $txtImg ?></td>
-			</tr>
-			<tr>
-				<th>Des</th>
-				<td><?php echo $txtDes ?></td>
-			</tr>
-			<tr>
-				<th>View</th>
-				<td><?php echo $txtView ?></td>
-			</tr>
-			<tr>
-				<th>Status</th>
-				<td><?php echo $txtSs ?></td>
-			</tr>
-			<tr>
-				<th>Date</th>
-				<td><?php echo $txtDate ?></td>
-			</tr>
-			<tr>
-				<th> ID user</th>
-				<td><?php echo $txtIdUser ?></td>
-			</tr>
-			<tr>
-				<th>Id List</th>
-				<td><?php echo $txtList ?></td>
-			</tr>
-		</table>
-	</form>
-	<?php endforeach; //foreach($video as $video) ?>
 </div>
